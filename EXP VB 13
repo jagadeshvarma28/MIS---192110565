@@ -1,0 +1,37 @@
+Public Class Form1
+    Private WithEvents cmbCategory As ComboBox
+    Private WithEvents lstItems As ListBox
+    Private WithEvents btnShowSelected As Button
+    Private lblResult As Label
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ' Adding items to ComboBox  
+        cmbCategory.Items.Add("Fruits")
+        cmbCategory.Items.Add("Vehicles")
+    End Sub
+
+    Private Sub CmbCategory_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbCategory.SelectedIndexChanged
+        ' Clearing previous items in ListBox  
+        lstItems.Items.Clear()
+
+        ' Adding items based on selected category  
+        If cmbCategory.SelectedItem = "Fruits" Then
+            lstItems.Items.Add("Apple")
+            lstItems.Items.Add("Banana")
+            lstItems.Items.Add("Orange")
+        ElseIf cmbCategory.SelectedItem = "Vehicles" Then
+            lstItems.Items.Add("Car")
+            lstItems.Items.Add("Bike")
+            lstItems.Items.Add("Bus")
+        End If
+    End Sub
+
+    Private Sub btnShowSelected_Click(sender As Object, e As EventArgs) Handles btnShowSelected.Click
+        ' Display selected ListBox item in Label  
+        If lstItems.SelectedItem IsNot Nothing Then
+            lblResult.Text = "You selected: " & lstItems.SelectedItem.ToString()
+        Else
+            lblResult.Text = "Please select an item from the list."
+        End If
+    End Sub
+End Class
